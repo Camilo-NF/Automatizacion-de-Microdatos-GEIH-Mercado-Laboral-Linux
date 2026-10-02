@@ -63,3 +63,4 @@ install.packages(
 ## Paso 4: Ejecutar el flujo de trabajo para el mercado laboral
 
 Una vez que el entorno está completamente configurado, los scripts de este proyecto deben ejecutarse en una secuencia lógica ordenada dentro de la carpeta /scripts/:
+
