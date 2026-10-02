@@ -9,9 +9,9 @@ Este repositorio contiene scripts en R diseñados para automatizar la descarga, 
 Antes de comenzar, asegúrate de contar con lo siguiente:
 * Un sistema operativo **Linux** (como Ubuntu o Linux Mint).
 * **R** instalado. Si no lo tienes, puedes instalarlo desde la terminal con `sudo apt install r-base` o descargarlo directamente desde el [sitio web oficial de CRAN](https://cran.r-project.org/).
-* Un entorno de desarrollo de tu preferencia, como **VS Code** (con la extensión de R) o **RStudio**.
 * Este repositorio descargado en tu equipo.
-  
+* *(Opcional)* Un entorno de desarrollo de tu preferencia, como **VS Code** (con la extensión de R) o **RStudio**. Si prefieres no usar entornos gráficos, puedes ejecutar todo directamente desde la terminal con comandos de consola.
+
 ---
 
 ## Paso 1: Instalar las dependencias del sistema operativo
@@ -43,5 +43,23 @@ Para que R reconozca los archivos del repositorio de manera automática sin enre
 Para instalar las librerías requeridas (tidyverse, fs, zip y stringi), tienes dos opciones según tu nivel de comodidad:
 
 **Opción A: Para usuarios avanzados (Mediante el script automatizado)**
-
 Si ya conoces el flujo de R, simplemente ejecuta el archivo de configuración de este repositorio dentro de tu consola de R para que el script detecte y descargue todo lo que falte automáticamente:
+```r
+source("00_preparacion_entorno_y_dependencias_linux.R")
+```
+
+**Opción B: Para quienes prefieren copiar y pegar (Instalación manual)**
+
+Si no quieres complicarte con archivos de configuración y prefieres hacerlo tú mismo, copia y pega este comando directamente en tu consola de R y presiona Enter:
+```r
+install.packages(
+  c("tidyverse", "fs", "zip", "stringi"),
+  repos = "https://cloud.r-project.org"
+)
+```
+
+---
+
+## Paso 4: Ejecutar el flujo de trabajo para el mercado laboral
+
+Una vez que el entorno está completamente configurado, los scripts de este proyecto deben ejecutarse en una secuencia lógica ordenada dentro de la carpeta /scripts/:
