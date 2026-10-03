@@ -94,8 +94,8 @@ ruta_destino_base  <- path("data/raw")
 
 Dentro de esas líneas del código, puedes personalizar lo siguiente:
 
-*nombre_archivo_zip:* Cambia "Enero 2026.zip" por el nombre exacto del archivo de la GEIH que descargaste del DANE.   
-*ruta_descargas:* Por defecto detecta tu carpeta personal de Descargas de forma automática. Si por alguna razón tienes el archivo guardado en otra ruta, puedes modificar esta línea escribiendo la ruta completa entre comillas (ejemplo: path("/home/tu-usuario/documentos/mis_datos")).   
+*nombre_archivo_zip:* Cambia "Enero 2026.zip" por el nombre exacto del archivo de la GEIH que descargaste del DANE.
+*ruta_descargas:* Por defecto detecta tu carpeta personal de Descargas de forma automática. Si por alguna razón tienes el archivo guardado en otra ruta, puedes modificar esta línea escribiendo la ruta completa entre comillas (ejemplo: path("/home/tu-usuario/documentos/mis_datos")).
 *ruta_destino_base:* Define dónde se guardarán los resultados procesados. Por defecto creará una carpeta limpia llamada data/raw en la raíz del proyecto.   Una vez que hagas tus modificaciones, guarda los cambios en el archivo (archivo y guardar cambios).
 
 
@@ -120,4 +120,4 @@ Rscript scripts/01_ingesta_estandarizacion_y_guardar_linux.R
 ### Paso 4.5: ¿Qué verás durante el proceso y qué obtienes al final?
 
 1. Mensajes en pantalla: Mientras corre, el script te irá reportando cada etapa en tiempo real: confirmará si halló el archivo ZIP en descargas, te avisará cuando cree la carpeta estandarizada correspondiente (por ejemplo, data/raw/2026_01/), te notificará la descompresión limpia omitiendo subcarpetas internas del DANE, y finalmente confirmará la estandarización de las cabeceras.
-2. Resultado final: Obtendrás una carpeta local organizada bajo data/raw/ con todos los microdatos limpios, descomprimidos y con las columnas estandarizadas (en minúsculas, sin espacios ni tildes mediante codificación Latin-ASCII), listos para arrancar con el siguiente análisis del mercado laboral.
+2. Resultado final: Obtendrás una carpeta local organizada bajo data/raw/ con todos los microdatos limpios, descomprimidos y con las columnas estandarizadas (en minúsculas, sin espacios ni tildes mediante codificación Latin-ASCII), listos para arrancar con el siguiente análisis del mercado laboral. 
