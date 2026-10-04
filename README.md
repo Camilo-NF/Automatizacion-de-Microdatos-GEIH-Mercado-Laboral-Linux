@@ -60,16 +60,6 @@ install.packages(
 
 ---
 
-## Paso 4: Ejecución y configuración del flujo de trabajo para el mercado laboral
-
-Una vez que el entorno está completamente configurado, el proceso de ingesta y limpieza de los microdatos se realiza a través del script ubicado en `scripts/01_ingesta_estandarizacion_y_guardar_linux.R`. 
-
-Tienes dos caminos principales para hacerlo: configurar los parámetros directamente en el código antes de ejecutarlo, o seguir el paso a paso detallado a continuación.
-
----
-
----
-
 ## Paso 4: Configurar, modificar y ejecutar el flujo de trabajo en R
 
 Una vez que el entorno está completamente configurado, el proceso se realiza editando y ejecutando el script base para procesar un archivo individual ubicado en la carpeta `scripts/01_ingesta_estandarizacion_y_guardar_linux.R`. 
@@ -78,15 +68,18 @@ Una vez que el entorno está completamente configurado, el proceso se realiza ed
 
 Para procesar tus archivos de forma muy sencilla —abriendo el archivo con un doble clic, cambiando el nombre del mes, guardando y ejecutando con Enter de forma sucesiva—, sigue estos pasos:
 
+
 ### 4.1. Descargar los microdatos de la GEIH (DANE)
 Si aún no cuentas con los archivos comprimidos, puedes descargarlos directamente desde el portal oficial del **[Catálogo de Microdatos del DANE](https://microdatos.dane.gov.co/)**. 
 
 Asegúrate de que el archivo comprimido que descargues (por ejemplo, `Enero 2026.zip`) quede guardado en tu carpeta personal de descargas del sistema operativo (por ejemplo, en `/home/Usuario/Descargas/`). Los archivos originales de origen se mantienen siempre fuera del repositorio en dicha ubicación.
 
+
 ### 4.2. Abrir R directamente desde la carpeta del proyecto
 Para que R reconozca los archivos de inmediato sin enredos de rutas:
 1. Entra con el explorador de archivos de tu sistema operativo a la carpeta raíz de este repositorio.
 2. Abre R asegurándote de que el directorio de trabajo sea esta misma carpeta (puedes hacer clic derecho en un espacio vacío de la carpeta, seleccionar "Abrir en la terminal" y escribir `R`).
+
 
 ### 4.3. Abrir y modificar el script (¡Puedes usar doble clic!)
 1. Ve a la carpeta `scripts/` dentro del explorador de archivos de tu computador.
@@ -102,11 +95,13 @@ Para que R reconozca los archivos de inmediato sin enredos de rutas:
 4. Cambia "Enero 2026.zip" por el nombre exacto del archivo que quieres procesar.
 5. Guarda los cambios en el archivo (puedes presionar Ctrl + S).
 
+
 ### 4.4. Ejecutar el script (Presionando Enter)
 Dirígete a la consola de R que abriste en el paso 4.2, escribe el siguiente comando y presiona Enter para poner en marcha el proceso:
    ```r
    source("scripts/01_ingesta_estandarizacion_y_guardar_linux.R")
    ```
+
 
 ### 4.5. ¿Cómo procesar varios meses de forma sucesiva?
 Si quieres hacer lo mismo para otro mes (como por ejemplo, pasar de Enero a Febrero) de forma rápida:
@@ -115,7 +110,8 @@ Si quieres hacer lo mismo para otro mes (como por ejemplo, pasar de Enero a Febr
 3. Guardas los cambios (Ctrl + S).
 4. Te vas a la consola de R, presionas la flecha hacia arriba (↑) en tu teclado para que aparezca el comando source(...) que ya habías escrito antes, y le vuelves a dar Enter. ¡Listo! Puedes repetir este ciclo las veces que necesites.
 
-4.6. ¿Qué verás durante el proceso y cómo se organizan las carpetas?
+
+### 4.6. ¿Qué verás durante el proceso y cómo se organizan las carpetas?
 **Mensajes en pantalla:** Mientras corre, el script te irá reportando cada etapa en tiempo real: confirmará si halló el archivo en tu carpeta externa de descargas, te avisará cuando cree la estructura correspondiente, te notificará la descompresión limpia omitiendo subcarpetas internas, y finalmente confirmará la estandarización de las cabeceras.
 
 Lógica de rutas y almacenamiento:
