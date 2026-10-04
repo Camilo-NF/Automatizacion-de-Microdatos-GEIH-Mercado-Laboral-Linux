@@ -68,57 +68,59 @@ Tienes dos caminos principales para hacerlo: configurar los parámetros directam
 
 ---
 
-### Paso 4.1: Ubicar el archivo ZIP de la GEIH
-Antes de abrir cualquier script, asegúrate de cumplir con una condición clave:
-* El archivo comprimido del DANE (por ejemplo, `Enero 2026.zip`) **debe estar guardado obligatoriamente en tu carpeta de Descargas** del sistema. El script está programado para buscarlo allí automáticamente de forma genérica, sin importar el nombre de tu usuario en Linux.
-
 ---
 
-### Paso 4.2: Abrir y revisar el script de parámetros
+## Paso 4: Configurar, modificar y ejecutar el flujo de trabajo en R
 
-Para adaptar el script a tus archivos:
+Una vez que el entorno está completamente configurado, el proceso se realiza editando y ejecutando el script base para procesar un archivo individual ubicado en la carpeta `scripts/01_ingesta_estandarizacion_y_guardar_linux.R`. 
 
-1. Dirígete a la carpeta `scripts/` de este repositorio en tu computador.
-2. Abre el archivo **`01_ingesta_estandarizacion_y_guardar_linux.R`** usando el editor de texto o entorno de tu preferencia (como VS Code, Gedit, Nano, RStudio, etc.).
-3. Localiza las primeras líneas del archivo correspondientes a los **parámetros iniciales**, las cuales se ven así:
+*(Nota: Si más adelante necesitas procesar un gran volumen de archivos en masa de forma automática, este repositorio también incluye una versión avanzada en `scripts/01_ingesta_estandarizacion_y_guardar_linux_Multi.R`, la cual detallaremos más adelante).*
 
-```r
-# 2. Definir parámetros iniciales
-# Modifica esto cuando cambies de mes/año (ej: "Febrero 2026.zip")
-nombre_archivo_zip <- "Enero 2026.zip" 
-ruta_descargas <- path(Sys.getenv("HOME"), "Descargas")
-ruta_destino_base  <- path("data/raw")
-```
+Para procesar tus archivos de forma muy sencilla —abriendo el archivo con un doble clic, cambiando el nombre del mes, guardando y ejecutando con Enter de forma sucesiva—, sigue estos pasos:
 
-### Paso 4.3: Ajustar los parámetros según tus necesidades
+### 4.1. Descargar los microdatos de la GEIH (DANE)
+Si aún no cuentas con los archivos comprimidos, puedes descargarlos directamente desde el portal oficial del **[Catálogo de Microdatos del DANE](https://microdatos.dane.gov.co/)**. 
 
-Dentro de esas líneas del código, puedes personalizar lo siguiente:
+Asegúrate de que el archivo comprimido que descargues (por ejemplo, `Enero 2026.zip`) quede guardado en tu carpeta personal de descargas del sistema operativo (por ejemplo, en `/home/Usuario/Descargas/`). Los archivos originales de origen se mantienen siempre fuera del repositorio en dicha ubicación.
 
-*nombre_archivo_zip:* Cambia "Enero 2026.zip" por el nombre exacto del archivo de la GEIH que descargaste del DANE.   
-*ruta_descargas:* Por defecto detecta tu carpeta personal de Descargas de forma automática. Si por alguna razón tienes el archivo guardado en otra ruta, puedes modificar esta línea escribiendo la ruta completa entre comillas (ejemplo: path("/home/tu-usuario/documentos/mis_datos")).
-*ruta_destino_base:* Define dónde se guardarán los resultados procesados. Por defecto creará una carpeta limpia llamada data/raw en la raíz del proyecto.   Una vez que hagas tus modificaciones, guarda los cambios en el archivo (archivo y guardar cambios).
+### 4.2. Abrir R directamente desde la carpeta del proyecto
+Para que R reconozca los archivos de inmediato sin enredos de rutas:
+1. Entra con el explorador de archivos de tu sistema operativo a la carpeta raíz de este repositorio.
+2. Abre R asegurándote de que el directorio de trabajo sea esta misma carpeta (puedes hacer clic derecho en un espacio vacío de la carpeta, seleccionar "Abrir en la terminal" y escribir `R`).
 
+### 4.3. Abrir y modificar el script (¡Puedes usar doble clic!)
+1. Ve a la carpeta `scripts/` dentro del explorador de archivos de tu computador.
+2. Abre el archivo **`01_ingesta_estandarizacion_y_guardar_linux.R`** haciendo doble clic sobre él (se abrirá con tu editor de texto predeterminado o con RStudio si lo tienes instalado).
+3. En las primeras líneas verás la sección de parámetros iniciales:
+   ```r
+   # 2. Definir parámetros iniciales
+   # Modifica esto cuando cambies de mes/año (ej: "Febrero 2026.zip")
+   nombre_archivo_zip <- "Enero 2026.zip" 
+   ruta_descargas <- path(Sys.getenv("HOME"), "Descargas")
+   ruta_destino_base  <- path("data/raw")
+    ```
+4. Cambia "Enero 2026.zip" por el nombre exacto del archivo que quieres procesar.
+5. Guarda los cambios en el archivo (puedes presionar Ctrl + S).
 
-### Paso 4.4: Cargar y ejecutar el script en R
+### 4.4. Ejecutar el script (Presionando Enter)
+Dirígete a la consola de R que abriste en el paso 4.2, escribe el siguiente comando y presiona Enter para poner en marcha el proceso:
+   ```r
+   source("scripts/01_ingesta_estandarizacion_y_guardar_linux.R")
+   ```
 
-Con los parámetros listos, tienes dos formas válidas para correr el proceso:
+### 4.5. ¿Cómo procesar varios meses de forma sucesiva?
+Si quieres hacer lo mismo para otro mes (como por ejemplo, pasar de Enero a Febrero) de forma rápida:
+1. Vuelves a abrir el archivo 01_ingesta_estandarizacion_y_guardar_linux.R (puedes dejarlo abierto de antes o hacerle doble clic de nuevo).
+2. Cambias el nombre del archivo por el nuevo mes (ej: "Febrero 2026.zip").
+3. Guardas los cambios (Ctrl + S).
+4. Te vas a la consola de R, presionas la flecha hacia arriba (↑) en tu teclado para que aparezca el comando source(...) que ya habías escrito antes, y le vuelves a dar Enter. ¡Listo! Puedes repetir este ciclo las veces que necesites.
 
-**Opción A (Desde la consola interactiva de R):**
-1. Abre tu terminal en la raíz del repositorio o abre tu entorno de R preferido asegurándote de que el directorio de trabajo sea la carpeta del proyecto.
-2. Ejecuta el siguiente comando para cargar y poner en marcha el script de ingesta:
-```r
-source("scripts/01_ingesta_estandarizacion_y_guardar_linux.R")
-```
+4.6. ¿Qué verás durante el proceso y cómo se organizan las carpetas?
+**Mensajes en pantalla:** Mientras corre, el script te irá reportando cada etapa en tiempo real: confirmará si halló el archivo en tu carpeta externa de descargas, te avisará cuando cree la estructura correspondiente, te notificará la descompresión limpia omitiendo subcarpetas internas, y finalmente confirmará la estandarización de las cabeceras.
 
-**Opción B (Directamente desde la terminal sin abrir la consola interactiva):**
-1. Abre tu terminal habitual de Linux ubicada en la carpeta raíz del proyecto.
-2. Ejecuta el script completo con una sola línea de comandos mediante Rscript:
-```Bash
-Rscript scripts/01_ingesta_estandarizacion_y_guardar_linux.R
-```
+Lógica de rutas y almacenamiento:
+**Archivos Originales:** Permanecen intactos fuera del repositorio en tu directorio de descargas (ej. /home/Usuario/Descargas/).
 
-### Paso 4.5: ¿Qué verás durante el proceso y qué obtienes al final?
+*repositorio/data/temp/:* **Carpeta temporal** interna del repositorio donde el script realiza la descompresión y lectura inicial de los archivos tal cual como vienen del DANE.
 
-1. Mensajes en pantalla: Mientras corre, el script te irá reportando cada etapa en tiempo real: confirmará si halló el archivo ZIP en descargas, te avisará cuando cree la carpeta estandarizada correspondiente (por ejemplo, data/raw/2026_01/), te notificará la descompresión limpia omitiendo subcarpetas internas del DANE, y finalmente confirmará la estandarización de las cabeceras.
-2. Resultado final: Obtendrás una carpeta local organizada bajo data/raw/ con todos los microdatos limpios, descomprimidos y con las columnas estandarizadas (en minúsculas, sin espacios ni tildes mediante codificación Latin-ASCII), listos para arrancar con el siguiente análisis del mercado laboral. 
-
+*carpeta personal/data/raw/* **(Archivos Definitivos):** Se ubica de forma accesible en tu carpeta personal de archivos (por ejemplo, en el directorio general de usuario donde por defecto suele descargar y organizarse para la mayoría de usuarios), conteniendo carpetas ordenadas por período (ej. 2026_01/) con los microdatos limpios, descomprimidos y con las columnas estandarizadas (en minúsculas, sin espacios ni tildes), listos para arrancar con el análisis.
