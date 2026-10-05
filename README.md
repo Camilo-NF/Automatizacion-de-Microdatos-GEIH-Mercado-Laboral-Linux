@@ -115,6 +115,7 @@ Si quieres hacer lo mismo para otro mes (como por ejemplo, pasar de Enero a Febr
 **Mensajes en pantalla:** Mientras corre, el script te irá reportando cada etapa en tiempo real: confirmará si halló el archivo en tu carpeta externa de descargas, te avisará cuando cree la estructura correspondiente, te notificará la descompresión limpia omitiendo subcarpetas internas, y finalmente confirmará la estandarización de las cabeceras.
 
 Lógica de rutas y almacenamiento:
+
 **Archivos Originales:** Permanecen intactos fuera del repositorio en tu directorio de descargas (ej. /home/Usuario/Descargas/).
 
 *repositorio/data/temp/:* **Carpeta temporal** interna del repositorio donde el script realiza la descompresión y lectura inicial de los archivos tal cual como vienen del DANE.
